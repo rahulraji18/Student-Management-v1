@@ -1,42 +1,27 @@
 {{>links}}
 {{>navbar}}
 <body>
-  {{!-- {{>navbar}} --}}
 <section class="vh-100">
   <div class="container h-100" style="margin-top : 100px">
     <div class="align-items-center justify-content-center h-100">
    
-        <form method="post" action="/login" class="was-validated">
+        <form method="post" action="/auth/login" class="was-validated">
             <h1 align="center" class="text-primary">Login</h1>
-          {{!-- {{>messages}} --}}
-
-            {{!-- {{ include ./partials/messages }} --}}
  {{#if msg.register}} 
             <div class="alert alert-success alert-success alert-dismissible">
               <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
               <strong>Success!</strong> Sucessfully registred
             </div>
           {{/if}} 
-             {{!--      {{#if msg.login}} 
-            <div class="alert alert-danger alert-danger alert-dismissible">
-              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              <strong>Invalid!</strong> Invalid Email or password
-            </div>
-          {{/if}} --}}
-
           <div class="form-outline mb-4">
             <label class="form-label" for="validateemail">Email address</label>
             <input type="email" id="validateemail" class="form-control form-control-lg" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" autofocus required/>
-            {{!-- <div class="valid-feedback">Success</div> --}}
             <div class="invalid-feedback">eg: name@spericorn.com</div>
           </div>
-
-          <!-- Password input -->
           <div class="form-outline mb-4">
             <label class="form-label" for="validatepassword">Password</label>
             <input type="password" id="validatepassword" class="form-control form-control-lg" name="password" pattern=".{8,12}" required/>
-            {{!-- <div class="valid-feedback">Success</div> --}}
-            {{!-- <div class="invalid-feedback">Enter valid password</div> --}}
+
           </div>
           <br>
         <div class="form-outline mb-4">
@@ -48,7 +33,7 @@
           </div>
         </form>
            <div>
-                 <a href="/reg"><button type="submit" class="btn btn-primary btn-lg btn-block">Register</button></a> 
+                 <a href="/auth/reg"><button type="submit" class="btn btn-primary btn-lg btn-block">Register</button></a> 
           </div>
     </div>
   </div>

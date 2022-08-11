@@ -1,6 +1,6 @@
 const Student = require('../models/student.model')
 const Subject = require('../models/subject')
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 5;
 module.exports = {
     add : async (req,res,next) => {
         try { 

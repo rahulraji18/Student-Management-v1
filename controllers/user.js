@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 const {mailer}  = require("../helpers/init_nodemailer");
 const Branch = require("../models/branch");
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 5;
 
 module.exports =({
   getStudent: async(req,res)=> {
@@ -78,7 +78,7 @@ console.log(err)
                 const saveUser = await newUser.save()
                 let msg = 'Your are successfully registered'
                 const mailers = mailer(email,msg)
-                res.redirect('/dashboard')
+                res.redirect('/student/dashboard')
             } catch (error) {
                 console.log(error)
             }      
@@ -133,7 +133,7 @@ console.log(err)
                let msg = `Your ${field} successfully updated`
                const mailers = mailer(data.email,msg)
                data.save()
-              res.redirect('/dashboard')
+              res.redirect('/student/dashboard')
            
             if(!data){
               res.render('details')
@@ -152,7 +152,7 @@ console.log(err)
             console.log(user.email)
             let msg = 'Your account successfully deleted'
             const mailers = mailer(user.email,msg)   
-            res.redirect('/dashboard')
+            res.redirect('/student/dashboard')
             
           } catch (error) {
             console.log(error)
