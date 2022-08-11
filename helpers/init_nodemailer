@@ -1,0 +1,32 @@
+const nodemailer = require('nodemailer')
+require('dotenv').config()
+
+    function mailer  (gmail,msg) {  
+        // console.log(msg)
+        let transporter=nodemailer.createTransport({
+            service:"gmail",
+            auth:{
+              user:process.env.GMAIL,
+              pass:process.env.PASSWORD,
+            },
+          tls:{
+            rejectUnauthorized:false
+          }
+        })
+       
+        let mailOptions = {
+          from: process.env.GMAIL,
+          to: gmail,
+          subject: "Welcome to Spricorn",
+          text: msg,
+           
+        }
+        transporter.sendMail(mailOptions,(err,success)=>{
+          if(err) throw err
+          else{
+            console.log(success)
+          }
+        })
+    }
+ 
+    module.exports = {mailer}
