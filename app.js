@@ -40,7 +40,9 @@ app.use(passport.session());
 //Router
 app.use('/auth', require('./router/auth'))
 app.use('/student',require('./router/student'))
-
+app.use((req,res,next) => {
+  res.render('404')
+})
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
     console.log(`Server is running on ${PORT}`)
