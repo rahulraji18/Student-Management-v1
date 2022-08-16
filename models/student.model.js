@@ -4,25 +4,32 @@ const studentSchema = new mongoose.Schema({
   
     name: {
         type: String, 
+        // required: true
         
     },
     address: {
         type: String,
+        required: true
     },
     email: {
-        type: String
+        type: String,
+        required: true
     },
     phone: {
-        type: String
+        type: String,
+        required: true
     },
     branch: {
         type: String,
+        required: true
     },
     dob: {
-        type: String
+        type: String,
+        required: true
     },
     Image:{
         type : String,
+        required: true
       },
 },
 {timestamps : true})

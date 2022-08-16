@@ -1,5 +1,4 @@
 const authController = require('../controllers/auth.controller')
-
 const passport = require('passport');
 const { ensureAuthenticated } = require('../config/auth');
 require('../config/passport')(passport);
@@ -12,11 +11,11 @@ router.get('/',(req,res)=> {
 })
 // login
 router.get('/login',async (req,res,next) => {
-    res.render('login')
+    res.render('login',{status: ''})
 })
 //register
 router.get('/reg', async (req,res) => {
-    res.render('register')
+    res.render('register',{status: ''})
 })
 //save register
 router.post('/register',authController.regiser)
@@ -24,15 +23,22 @@ router.post('/register',authController.regiser)
 router.post('/login',(req, res, next) => {
     passport.authenticate('local', {
       successRedirect: '/student/dashboard',
-      failureRedirect: '/auth/login',
+      failureRedirect: '/auth/logins',
+      failureFlash: true
     })(req, res, next);
+})
+router.get('/logins', (req,res) => {
+
+    res.render('login',{status: false})
 })
 //logout
 router.get('/logout',ensureAuthenticated,async(req, res,next) => {
     // req.logout()
+   
     req.session.destroy(function (err) {
-    res.redirect('/auth/login')
+    
+     res.redirect('/auth/login')
     })
   });
-  
+
 module.exports = router

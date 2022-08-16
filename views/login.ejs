@@ -1,0 +1,69 @@
+<%- include('includes/links.ejs') %>
+<%- include('includes/navbar.ejs') %>
+<body>
+<main>
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Login</h2>
+              <%- include('includes/messages.ejs') %>
+        <form method="post" action="/auth/login" class="was-validated">
+          <% if(status === true) { %>
+            <div class="alert alert-success alert-success alert-dismissible">
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+              <strong>Successfully Registered!</strong>
+            </div>
+         <% } %>
+
+                <div class="form-outline mb-4">
+            <label class="form-label" for="validateemail">Email address</label>
+            <input type="email" id="validateemail" class="form-control form-control-lg" name="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" autofocus required/>
+                </div>
+
+                <div class="form-outline mb-4">
+            <label class="form-label" for="validatepassword">Password</label>
+            <input type="password" id="validatepassword" class="form-control form-control-lg" name="password" pattern=".{8,12}" required />
+            <input type="checkbox"   style="margin-top: 12px;" onclick="Toggle()">
+            Show Password
+                </div>
+
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
+                </div>
+
+                <p class="text-center text-muted mt-5 mb-0">Create account? <a href="/auth/reg"
+                    class="fw-bold text-body"><u>Register here</u></a></p>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+    </body>
+    <script>
+      // Change the type of input to password or text
+      function Toggle() {
+          var temp = document.getElementById("validatepassword");
+          if (temp.type === "password") {
+              temp.type = "text";
+          }
+          else {
+              temp.type = "password";
+          }
+      }
+  </script>
+    </html>
+
+
+
+  

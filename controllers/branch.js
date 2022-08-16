@@ -8,9 +8,10 @@ module.exports =({
               branch : req.body.branch,
             })
             const saveBranch = await newBranch.save()
-            res.redirect('/dashboard') 
+            req.flash('success_msg','saved successfully ')
+            res.redirect('/student/dashboard') 
           } catch (error) {    
-            console.log(error)
+            next(error)
           }
         },
 
