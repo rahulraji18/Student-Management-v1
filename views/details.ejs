@@ -69,10 +69,10 @@ swal({
 .then((willDelete) => {
   if (willDelete) {
     
-    swal("Record Deleted", {
-      icon: "success",
-      buttons:false
-    });
+    // swal("Record Deleted", {
+    //   icon: "success",
+    //   buttons:false
+    // });
     window.location.href = "/student/deletes/<%= details._id %>";
   } else {
     swal("Cancel");

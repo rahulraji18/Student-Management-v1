@@ -29,7 +29,6 @@ router.post('/login',(req, res, next) => {
 //logout
 router.get('/logout',ensureAuthenticated,async(req, res,next) => {
     // req.logout()
-   
     req.session.destroy(function (err) {
      res.redirect('/auth/login')
     })
