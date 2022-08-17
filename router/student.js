@@ -1,4 +1,4 @@
-const userController = require('../controllers/user')
+const userController = require('../controllers/student')
 const branchController = require('../controllers/branch')
 const {ensureAuthenticated} = require('../config/auth')
 const upload = require('../helpers/upload')
@@ -23,5 +23,8 @@ router.get('/branch',ensureAuthenticated, (req,res) => {
   res.render('branch')
 })
 router.post('/branch', ensureAuthenticated,branchController.add)
-
+// router.get('/dem', (req,res) => {
+//   req.flash('success_msg','success')
+//   res.render('details')
+// })
 module.exports = router

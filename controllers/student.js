@@ -1,8 +1,7 @@
-const Student = require("../models/student.model")
+const Student = require("../models/student")
 var mongoose = require('mongoose');
 const {mailer}  = require("../helpers/init_nodemailer");
 const Branch = require("../models/branch");
-const { deleteOne } = require("../models/student.model");
 
 const ITEMS_PER_PAGE = 5;
 
@@ -123,12 +122,20 @@ module.exports =({
         },
         updated : async (req,res,next) => {
           try {
-            
-            const old = await Student.findOne({_id: req.params.id})
-            const data = await Student.findByIdAndUpdate(req.params.id, {
-              $set : req.body,
-              Image: req.file.filename,
-            },{new : true})
+            let data
+            if(req.file){
+              data = await Student.findByIdAndUpdate(req.params.id, {
+                $set : req.body,
+                Image: req.file.filename
+              },{new : true})
+  
+            }else{
+              data = await Student.findByIdAndUpdate(req.params.id, {
+                $set : req.body,
+              },{new : true})
+  
+            }
+            let old = await Student.findOne({_id: req.params.id})            
 
                 //  const dem1 = data._doc
                 //  const old11 = old._doc
@@ -144,8 +151,10 @@ module.exports =({
                   });
                   return keyFound || -1;
                };
-               console.log(difference(old1, dem));
+               
                var field =difference(old1, dem)
+              //  console.log(old1)
+               console.log(field)
                let msg = `Your ${field} successfully updated`
                const mailers = mailer(data.email,msg)
                data.save()

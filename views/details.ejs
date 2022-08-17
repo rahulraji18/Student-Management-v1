@@ -1,21 +1,15 @@
 <%- include('includes/links.ejs') %>
 <body>
 <%- include('includes/nav2.ejs') %>
-         <!-- {{#if success}} 
-            <div class="alert alert-success alert-success alert-dismissible">
-              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-              <strong>Success!</strong>
-            </div>
-          {{/if}}  -->
 <div class="container mt-3"> 
-  <h2  align="center">Student Details</h2>
+  <h2 align="center" style="margin-bottom: 50px ; margin-right: 100px ; margin-top: 100px;">STUDENT DETAILS</h2>
   <%- include('includes/messages.ejs') %>       
   <table class="table table-light table-hover" >
     <thead>
       <div class="flex">
 </div>
 
-      <tr align="center">
+      <tr align="center" >
                <div class="dropdown" style="float: right;">
         <th>NAME
  
@@ -39,7 +33,7 @@
   <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z">
 </svg> New Student</button></a>
 <form action="/student/dashboard ">
-      <button type="submit" class="btn btn-success" style="float: right; margin-right:50px" >Search</button>
+      <button type="submit" class="btn btn-success" style="float: right; margin-right:50px" >Go</button>
         <div class="form-outline" style="float: right; margin-right:2px">
           <input type="search" id="form1" placeholder="Search" class="form-control" name="searchtext"/>
         </div>
@@ -55,31 +49,45 @@
         <td><%= details.phone %></td>
         <td><%= details.dob %></td>
        
-        <td><a href="/student/update/<%= details._id %>"><button type="button" class="btn btn-warning" data-bs-toggle="tooltip" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+        <td><a href="/student/update/<%= details._id %>"><button type="button" class="btn btn-lg btn-warning" data-bs-toggle="tooltip" title="Edit"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
   <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-</svg> Edit</button></a>
+</svg></button></a>
 
-<a href="/student/deletes/<%= details._id %>">
-  <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" title="Delete" onclick="sweetalert()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+<!-- <a href="/student/deletes/<%= details._id %>"> -->
+  <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-toggle="tooltip" title="Delete" onclick="sweetalert()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
   <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
-</svg> Delete</button>
-</a>
-<!-- <%- include('includes/modal.ejs') %>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <a href="/student/deletes/<%= details._id %>">
-          <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" title="Delete">Delete</button>
-         </a>
-      </div>
-    </div>
-  </div>
+</svg></button>
+<script>
+ function sweetalert(){
+swal({
+  title: "Are you sure?",
+  icon: "warning",
+  buttons: true,
+  dangerMode: true,
+})
+.then((willDelete) => {
+  if (willDelete) {
+    
+    swal("Record Deleted", {
+      icon: "success",
+      buttons:false
+    });
+    window.location.href = "/student/deletes/<%= details._id %>";
+  } else {
+    swal("Cancel");
+  }
+});
 
-</div> -->
+  }
+  
+ </script>
 
-        <a href="/student/view/<%= details._id %>"><button type="button" class="btn btn-success" data-bs-toggle="tooltip" title="View"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+
+        <a href="/student/view/<%= details._id %>"><button type="button" class="btn btn-lg btn-success" data-bs-toggle="tooltip" title="View"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
   <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
   <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-</svg> View</button></a>
+</svg></button></a>
         </td>
        
       </tr>
@@ -89,20 +97,15 @@
 </div>
 
 <div class="pagination">
-   <a href="/student/dashboard/?page=1"><<</a>
+   <a href="/student/dashboard/?page=1" class="text-success"><<</a>
    <a href="/student/dashboard/?page=<%= currentPage %>" class="active"><%= currentPage %></a>
-  <% if(demolim) { %> 
+<% if(demolim) { %> 
     <a href="/student/dashboard/?page=<%= nextPage %>"><%= nextPage %></a>
- <% } %> 
+<% } %> 
    <a href="/student/dashboard/?page=<%= lastPage %>">>></a> 
  </div>
+ 
  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
- <script>
-  function sweetalert(){
-    
-      alert('Are you sure')
-  }
- </script>
+
 </body>
-<!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" -->
 </html>

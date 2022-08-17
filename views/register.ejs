@@ -1,5 +1,5 @@
 <%- include('includes/links.ejs') %>
-<%- include('includes/navbar.ejs') %>
+
 <body>
 <main>
     <div class="mask d-flex align-items-center h-100 gradient-custom-3">
@@ -7,17 +7,10 @@
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
 
-  
-
           <div class="card" style="border-radius: 15px;">
             <div class="card-body p-5">
               <h2 class="text-uppercase text-center mb-5">Register</h2>
-              <% if(status === false ) { %>
-                <div class="alert alert-danger alert-danger alert-dismissible">
-                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                  <strong>Already registred!</strong>
-                </div>
-             <% } %>
+              <%- include('includes/messages.ejs') %> 
         <form method="post" action="/auth/register" class="was-validated">
 
                 <div class="form-outline mb-4">
@@ -27,7 +20,9 @@
 
                 <div class="form-outline mb-4">
             <label class="form-label" for="form1Example23">Password</label>
-            <input type="password" id="validatepassword" class="form-control form-control-lg" name="password" pattern=".{8,12}" required title="8 to 12 characters"/>
+            <input type="password" id="validatepassword" class="form-control form-control-lg" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}" required title="8 to 12 characters"/>
+            <input type="checkbox"   style="margin-top: 12px;" onclick="Toggle()">
+            Show Password
                 </div>
 
                 <div class="d-flex justify-content-center">
@@ -48,6 +43,19 @@
   </div>
 
 </main>
+<script>
+  // Change the type of input to password or text
+  function Toggle() {
+      var temp = document.getElementById("validatepassword");
+      if (temp.type === "password") {
+          temp.type = "text";
+      }
+      else {
+          temp.type = "password";
+      }
+  }
+</script>
+
     </body>
     </html>
 

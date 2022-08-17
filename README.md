@@ -41,6 +41,8 @@ steps =>
 11.View all branch in student registration(select box)
 12.Search student in student list
 13.Confirmation for delete
+
+...end...
  
 
 

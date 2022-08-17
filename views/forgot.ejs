@@ -1,0 +1,37 @@
+<%- include('includes/links.ejs') %>
+
+<%- include('includes/links.ejs') %>
+
+<body>
+<main>
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Forgot Password</h2>
+              
+              <form action="/auth/forgot" method="post" class="container mt-5 was-validated">
+          <%- include('includes/messages.ejs') %> 
+                <div class="form-outline mb-4">
+            <label class="form-label" for="validateemail">Email address</label>
+            <input type="text" class="form-control" placeholder="enter your email" name="forgot_mail"
+            pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <button type="submit"
+                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Send to mail</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+<body>
+</body>
+</html>
