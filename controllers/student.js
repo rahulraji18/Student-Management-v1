@@ -135,27 +135,8 @@ module.exports =({
               },{new : true})
   
             }
-            let old = await Student.findOne({_id: req.params.id})            
-
-                //  const dem1 = data._doc
-                //  const old11 = old._doc
-                 var {updatedAt,createdAt,...dem} = data._doc
-                 var {updatedAt,createdAt,...old1} = old._doc
-
-                 const difference = (old1, dem) => {
-                  let keyFound = false;
-                  Object.keys(old1).forEach(key => {
-                     if(old1[key] !== dem[key]){
-                        return keyFound = key
-                     }
-                  });
-                  return keyFound || -1;
-               };
-               
-               var field =difference(old1, dem)
-              //  console.log(old1)
-               console.log(field)
-               let msg = `Your ${field} successfully updated`
+ 
+               let msg = `Your successfully updated`
                const mailers = mailer(data.email,msg)
                data.save()
                req.flash('success_msg','Successfully Updated') 
